@@ -89,3 +89,15 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+
+uint64
+sys_koccupiedmemory(void)
+{
+    return koccupiedmemory();
+}
+uint64
+sys_kfreememory(void)
+{
+    return kfreememory();
+}

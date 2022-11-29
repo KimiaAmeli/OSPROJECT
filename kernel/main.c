@@ -17,7 +17,6 @@ main()
     printf("xv6 kernel is booting\n");
     printf("\n");
     kinit();         // physical page allocator
-    printf("free memory : %d",kfreememory());
     kvminit();       // create kernel page table
     kvminithart();   // turn on paging
     procinit();      // process table
@@ -29,7 +28,9 @@ main()
     iinit();         // inode table
     fileinit();      // file table
     virtio_disk_init(); // emulated hard disk
+    printf("free mamory in xv6 : %d\n", kfreememory());
     userinit();      // first user process
+    printf("used memory by process : %d\n", koccupiedmemory() );
     __sync_synchronize();
     started = 1;
   } else {

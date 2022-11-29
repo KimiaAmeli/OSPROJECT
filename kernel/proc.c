@@ -671,6 +671,7 @@ procdump(void)
 
   printf("\n");
   for(p = proc; p < &proc[NPROC]; p++){
+
     if(p->state == UNUSED)
       continue;
     if(p->state >= 0 && p->state < NELEM(states) && states[p->state])
@@ -680,4 +681,19 @@ procdump(void)
     printf("%d %s %s", p->pid, state, p->name);
     printf("\n");
   }
+}
+
+
+
+
+
+int
+koccupiedmemory(void)
+{
+    struct proc *p;
+    uint64 count = 0;
+    for(p = proc; p < &proc[NPROC]; p++) {
+        count=count+p->sz;
+    }
+    return count;
 }
